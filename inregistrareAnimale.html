@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formular de inregistrare animale</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Roboto, sans-serif;
+      background: linear-gradient(180deg, #f2f7f2, #dfe9df);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2f8f46;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      color: #444;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #2f8f46;
+      box-shadow: 0 0 4px rgba(47, 143, 70, 0.4);
+      outline: none;
+    }
+
+    .radio-group,
+    .checkbox-group {
+      margin-bottom: 15px;
+    }
+
+    .radio-group label,
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 12px;
+      font-weight: 500;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button[type="submit"] {
+      background-color: #2f8f46;
+      color: white;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #256d36;
+      transform: scale(1.03);
+    }
+
+    button[type="reset"] {
+      background-color: #7b1f2f;
+      color: white;
+    }
+
+    button[type="reset"]:hover {
+      background-color: #5e1723;
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Formular de inregistrare animale</h1>
+    <p>Completeaza acest formular pentru a inregistra animalul tau de companie la clinica veterinara.</p>
+
+    <form action="#" method="post">
+      <label for="numeStap">Nume stapan:</label>
+      <input type="text" id="numeStap" name="numeStap" placeholder="Ex: Ioana Popescu" required>
+
+      <label for="telefon">Telefon:</label>
+      <input type="text" id="telefon" name="telefon" placeholder="Ex: 07xx xxx xxx" required>
+
+      <label for="numeAnimal">Nume animal:</label>
+      <input type="text" id="numeAnimal" name="numeAnimal" placeholder="Ex: Max" required>
+
+      <label for="specie">Specie:</label>
+      <select id="specie" name="specie" required>
+        <option value="">Selecteaza specie...</option>
+        <option value="caine">Caine</option>
+        <option value="pisica">Pisică</option>
+        <option value="iepure">Iepure</option>
+        <option value="hamster">Hamster</option>
+        <option value="altul">Altul</option>
+      </select>
+
+      <div class="radio-group">
+        <label>Sexul animalului:</label>
+        <label><input type="radio" name="sex" value="Mascul" required> Mascul</label>
+        <label><input type="radio" name="sex" value="Femela"> Femela</label>
+      </div>
+
+      <div class="checkbox-group">
+        <label>Servicii dorite:</label>
+        <label><input type="checkbox" name="servicii" value="Vaccinare"> Vaccinare</label>
+        <label><input type="checkbox" name="servicii" value="Deparazitare"> Deparazitare</label>
+        <label><input type="checkbox" name="servicii" value="Consult"> Consult</label>
+      </div>
+
+      <label for="observatii">Observatii:</label>
+      <textarea id="observatii" name="observatii" placeholder="Note suplimentare..."></textarea>
+
+      <div class="buttons">
+        <button type="submit">Trimite</button>
+        <button type="reset">Reseteaza</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

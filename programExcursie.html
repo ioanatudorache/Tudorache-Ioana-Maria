@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programul excursiei la munte</title>
+
+  <style>
+    :root {
+      --verde: #2f8f46;
+      --maro: #6b4f3b;
+      --rosu: #7b1f2f;
+      --bg: #faf8f5;
+    }
+
+    body {
+      font-family: "Times New Roman", Roboto, sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--rosu);
+      margin-bottom: 15px;
+    }
+
+    .imagine-excursie {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .imagine-excursie img {
+      width: 90%;
+      max-width: 750px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    thead th {
+      background: linear-gradient(90deg, var(--verde), var(--maro));
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f3f6f3;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    tbody tr:hover {
+      background-color: rgba(123,31,47,0.1);
+    }
+
+    .scop {
+      margin-top: 20px;
+      border-left: 6px solid var(--verde);
+      padding: 12px 15px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(47,143,70,0.05), rgba(123,31,47,0.03));
+    }
+
+    .scop .verde { color: var(--verde); font-weight: bold; }
+    .scop .maro { color: var(--maro); font-weight: bold; }
+    .scop .rosu { color: var(--rosu); font-weight: bold; }
+
+    @media (max-width: 600px) {
+      th, td { padding: 8px; }
+      h1 { font-size: 1.4rem; }
+      .imagine-excursie img { height: 250px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Programul excursiei la munte</h1>
+
+    <div class="imagine-excursie">
+      <img id="pozaExcursie" src="Groapa_ruginoasa.WEBP" alt="Peisaj montan ziua 1">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ziua</th>
+          <th>Activitate principală</th>
+          <th>Locație</th>
+          <th>Durată (ore)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-img="Groapa_ruginoasa.WEBP">
+          <td>1</td>
+          <td><b>Drumetie montana</b><br></td>
+          <td>Groapa Ruginoasa</td>
+          <td>5</td>
+        </tr>
+
+        <tr data-img="Poiana_brasov.JPG">
+          <td>2</td>
+          <td><b>Zi de schi</b><br></td>
+          <td>Poiana Brasov</td>
+          <td>7</td>
+        </tr>
+
+        <tr data-img="Pestera_scarisora.JPG">
+          <td>3</td>
+          <td><b>Vizita pestera</b><br></td>
+          <td>Pestera Scarisoara</td>
+          <td>6</td>
+        </tr>
+
+        <tr data-img="peles.jpg">
+          <td>4</td>
+          <td><b>Explorare culturala</b><br></td>
+          <td>Sinaia</td>
+          <td>5</td>
+        </tr>
+
+        <tr data-img="cantacuzino.jpg">
+          <td>5</td>
+          <td><b>Vizitarea castelului</b><br></td>
+          <td>Castelul Cantacuzino</td>
+          <td>3</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="scop">
+      Scopul excursiei: <span class="verde">explorarea naturii</span>,
+      <span class="maro">culturalizarea si invatarea istoriei Romaniei</span> si
+      <span class="rosu">trairea unei experiente montane autentice</span>.
+    </p>
+  </div>
+
+  <script>
+    const randuri = document.querySelectorAll("tbody tr");
+    const poza = document.getElementById("pozaExcursie");
+
+    randuri.forEach(rand => {
+      rand.addEventListener("mouseenter", () => {
+        const img = rand.getAttribute("data-img");
+        if (img) {
+          poza.style.opacity = "0";
+          setTimeout(() => {
+            poza.src = img;
+            poza.style.opacity = "1";
+          }, 200);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
