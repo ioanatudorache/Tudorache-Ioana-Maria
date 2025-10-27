@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phronesis — Înregistrare</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: "Times New Roman", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .signup-box {
+      width: 380px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(128, 0, 128, 0.15);
+      overflow-y: auto; 
+      max-height: 90vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #800080;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #4a004a;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 55%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #800080;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    fieldset {
+      margin-top: 15px;
+      border: 1px solid #d0b0d0;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    legend {
+      color: #800080;
+      font-weight: bold;
+      padding: 0 8px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #800080;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #a64ca6;
+    }
+
+    #error-message {
+      color: red;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #800080;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-box">
+    <h1>Înregistrare Phronesis</h1>
+
+    <form id="signupForm">
+      <label for="fname">Prenume:</label>
+      <input type="text" id="fname" required>
+
+      <label for="lname">Nume:</label>
+      <input type="text" id="lname" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="password">Parolă:</label>
+      <div class="password-container">
+        <input type="password" id="password" required>
+        <button type="button" class="toggle-password" onclick="togglePassword('password', this)">Arată</button>
+      </div>
+
+      <label for="confirm-password">Confirmă parola:</label>
+      <div class="password-container">
+        <input type="password" id="confirm-password" required>
+        <button type="button" class="toggle-password" onclick="togglePassword('confirm-password', this)">Arată</button>
+      </div>
+
+      <p id="error-message"></p>
+
+      <div>
+        <fieldset>
+        <legend>Preferințe literare (opțional):</legend>
+        <label><input type="checkbox" value="Romance"> Romance</label><br>
+        <label><input type="checkbox" value="Young Adult"> Young Adult</label><br>
+        <label><input type="checkbox" value="Fantasy"> Fantasy</label><br>
+        <label><input type="checkbox" value="Clasic"> Clasic</label><br>
+        <label><input type="checkbox" value="Horror"> Horror</label><br>
+        <label><input type="checkbox" value="Thriller"> Thriller</label><br>
+        <label><input type="checkbox" value="Psihologie"> Psihologie</label><br>
+        <label><input type="checkbox" value="Non-ficțiune"> Non-ficțiune</label><br>
+        <label><input type="checkbox" value="Copii">Copii</label><br>
+        <label><input type="checkbox" value="Fictiune istorica">Fictiune istorica</label><br>
+        <label><input type="checkbox" value="Istorie">Istorie</label><br>
+        <label><input type="checkbox" value="Astronomie">Astronomie</label>
+      </fieldset>
+    </div>
+      
+
+      <button type="submit">Creează cont</button>
+    </form>
+
+    <div class="login-link">
+      Ai deja cont? <a href="#">Autentifică-te</a>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword(id, btn) {
+      const field = document.getElementById(id);
+      if (field.type === "password") {
+        field.type = "text";
+        btn.textContent = "Ascunde";
+      } else {
+        field.type = "password";
+        btn.textContent = "Arată";
+      }
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const pass = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm-password").value;
+      const msg = document.getElementById("error-message");
+
+      if (pass !== confirm) {
+        msg.textContent = "Parolele nu coincid.";
+        return;
+      }
+
+      if (pass.length < 6) {
+        msg.textContent = "Parola trebuie să aibă cel puțin 6 caractere.";
+        return;
+      }
+
+      msg.textContent = "";
+
+      const genres = Array.from(document.querySelectorAll("fieldset input:checked"))
+        .map(el => el.value);
+
+      alert("Cont creat cu succes!\nGenuri selectate: " +
+        (genres.length ? genres.join(", ") : "niciunul"));
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phronesis — Favorite</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #800080;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .favorites-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .book-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(128, 0, 128, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(128, 0, 128, 0.2);
+    }
+
+    .book-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #4a004a;
+      margin-bottom: 5px;
+    }
+
+    .book-author {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .book-price {
+      font-weight: bold;
+      color: #800080;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .add-btn {
+      background-color: #800080;
+      color: white;
+      margin-right: 5px;
+    }
+
+    .add-btn:hover {
+      background-color: #a64ca6;
+    }
+
+    .remove-btn {
+      background-color: #e0cbe0;
+      color: #4a004a;
+    }
+
+    .remove-btn:hover {
+      background-color: #d1add1;
+    }
+
+    .empty-message {
+      color: #800080;
+      font-size: 18px;
+      margin-top: 40px;
+      text-align: center;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Favoritele mele</h1>
+
+  <div class="favorites-container" id="favoritesContainer">
+    <div class="book-card">
+      <div class="book-title">"Micul Prinț"</div>
+      <div class="book-author">Antoine de Saint-Exupéry</div>
+      <div class="book-price">39.99 lei</div>
+      <button class="add-btn" onclick="addToCart(this)">Adaugă în coș</button>
+      <button class="remove-btn" onclick="removeFavorite(this)">Șterge</button>
+    </div>
+
+    <div class="book-card">
+      <div class="book-title">"Crimă și pedeapsă"</div>
+      <div class="book-author">F. M. Dostoievski</div>
+      <div class="book-price">54.50 lei</div>
+      <button class="add-btn" onclick="addToCart(this)">Adaugă în coș</button>
+      <button class="remove-btn" onclick="removeFavorite(this)">Șterge</button>
+    </div>
+
+  <p id="emptyMsg" class="empty-message" style="display:none;">
+    Lista ta de favorite este goală momentan<br>
+    Descoperă noi titluri pe <strong>Phronesis</strong>!
+  </p>
+
+  <script>
+    function addToCart(btn) {
+      const title = btn.parentElement.querySelector(".book-title").textContent;
+      alert(`"${title}" a fost adăugat în coș 🛒`);
+    }
+
+    function removeFavorite(btn) {
+      const card = btn.parentElement;
+      const title = card.querySelector(".book-title").textContent;
+      card.remove();
+      alert(`"${title}" a fost eliminat din favorite`);
+
+      const container = document.getElementById("favoritesContainer");
+      if (container.children.length === 0) {
+        document.getElementById("emptyMsg").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>

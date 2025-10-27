@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phronesis - Asistenta</title>
+  <meta name="description" content="Întrebări frecvente despre comenzi, livrare, vouchere și retururi — Phronesis." />
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --max-w: 980px;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: var(--bg);
+      color: #111;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    a { color: var(--purple); text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid #eee;
+      z-index: 40;
+    }
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #f0f0f0;
+    }
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 600;
+    }
+    .nav-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+    }
+    .icon-btn:hover {
+      background: #fafafa;
+    }
+    .pill {
+      background: var(--purple);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    .muted { color: var(--muted); }
+
+    main { padding: 40px 0; }
+    h2 { color: var(--purple); margin-bottom: 24px; }
+    .faq {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+    details {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 16px 20px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(16,24,40,0.04);
+      transition: all 0.3s ease;
+    }
+    details[open] {
+      border-color: var(--purple);
+      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.1);
+    }
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    details p {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Bara de sus (aceeași ca la pagina Despre) -->
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="Logo Phornesis" />
+        <div>
+          <h1>phronesis</h1>
+          <div class="muted" style="font-size:13px">Librăria pentru curioși</div>
+        </div>
+      </div>
+
+      <nav class="nav-actions" aria-label="Meniul principal">
+        <button class="icon-btn" title="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 21s-7.5-4.735-10-8.06C-0.5 8.636 4 4 7.5 6.5 9 7.75 10 10 12 11c2-1 3-3.25 4.5-4.5C20 4 24.5 8.636 22 12.94 19.5 16.265 12 21 12 21z"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="muted">Wishlist</span>
+        </button>
+
+        <button class="icon-btn" title="Coșul meu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M6 6h15l-1.5 9h-11L6 6z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="muted">Cos</span>
+          <span class="pill" style="margin-left:8px">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Asistență si intrebări frecvente (FAQ)</h2>
+      <section class="faq">
+        <details>
+          <summary>Cum pot folosi un voucher sau un cod de reducere?</summary>
+          <p>Poți introduce codul voucherului în pagina de finalizare a comenzii, în câmpul <strong>„Cod promoțional”</strong>. Reducerea se aplică automat înainte de plată. Atenție: unele vouchere au dată de expirare sau sunt valabile doar pentru anumite categorii de produse.</p>
+        </details>
+
+        <details>
+          <summary>Ce metode de transport sunt disponibile?</summary>
+          <p>Oferim livrare prin curier rapid (Fan Courier, Sameday, Cargus) și opțiunea de ridicare personală din librărie. Poți selecta metoda preferată la finalizarea comenzii.</p>
+        </details>
+
+        <details>
+          <summary>⏱Care este durata livrării?</summary>
+          <p>Comenzile sunt procesate în 24h și livrate, de obicei, în 1-3 zile lucrătoare. În perioadele aglomerate (sărbători, campanii promoționale), termenul se poate extinde până la 5 zile.</p>
+        </details>
+
+        <details>
+          <summary>Pot returna sau schimba un produs?</summary>
+          <p>Da! Ai dreptul să returnezi produsele în termen de 14 zile calendaristice de la primire. Produsele trebuie să fie în stare bună, fără urme de folosire. Pentru retururi, trimite un email la <strong>contact@phornesis.ro</strong> cu numărul comenzii și motivul returului.</p>
+        </details>
+
+        <details>
+          <summary>Cum pot afla mai multe despre o carte înainte să o cumpăr?</summary>
+          <p>Pe pagina fiecărei cărți vei găsi descrierea completă, detalii despre autor, editură, număr de pagini și recenzii. Dacă ai întrebări suplimentare, echipa noastră îți răspunde prin chat sau email.</p>
+        </details>
+
+        <details>
+          <summary>Cum pot contacta echipa Phronesis?</summary>
+          <p>Ne poți scrie oricând la <strong>contact@phronesis.ro</strong> sau prin formularul de contact de pe site. De asemenea, suntem activi pe Instagram și Facebook — căută <strong>@phornesis.books</strong>.</p>
+        </details>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

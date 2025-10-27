@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phronesis — Checkout</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: "Times New Roman", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .checkout-container {
+      width: 90%;
+      max-width: 900px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(128, 0, 128, 0.15);
+    }
+
+    h1 {
+      text-align: center;
+      color: #800080;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f6f0f9;
+      color: #800080;
+      font-weight: 700;
+    }
+
+    td input[type="number"] {
+      width: 60px;
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .voucher-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .voucher-section input {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .voucher-section button {
+      padding: 10px 15px;
+      background-color: #800080;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    .voucher-section button:hover {
+      background-color: #a64ca6;
+    }
+
+    .total-summary {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4a004a;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="checkout-container">
+    <h1>Checkout — Phronesis</h1>
+
+    <table id="checkout-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Stock Status</th>
+          <th>Qty.</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"Mândrie și prejudecată"</td>
+          <td style="color:green;">În stoc</td>
+          <td><input type="number" min="1" value="1" onchange="updateTotal(this)"></td>
+          <td data-price="59.99">59.99 lei</td>
+          <td class="item-total">59.99 lei</td>
+        </tr>
+        <tr>
+          <td>"Cronicile din Narnia"</td>
+          <td style="color:green;">În stoc</td>
+          <td><input type="number" min="1" value="2" onchange="updateTotal(this)"></td>
+          <td data-price="45.00">45.00 lei</td>
+          <td class="item-total">90.00 lei</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="voucher-section">
+      <input type="text" id="voucher" placeholder="Introdu codul de voucher">
+      <button onclick="applyVoucher()">Aplică</button>
+      <p id="voucher-msg" style="color:#800080; font-weight:600; margin-top:10px;"></p>
+    </div>
+
+    <div class="total-summary">
+      Total general: <span id="grand-total">149.99 lei</span>
+    </div>
+  </div>
+
+  <script>
+    function updateTotal(input) {
+      const row = input.closest("tr");
+      const price = parseFloat(row.querySelector("[data-price]").getAttribute("data-price"));
+      const qty = parseInt(input.value);
+      const totalCell = row.querySelector(".item-total");
+      totalCell.textContent = (price * qty).toFixed(2) + " lei";
+      updateGrandTotal();
+    }
+
+    function updateGrandTotal() {
+      let total = 0;
+      document.querySelectorAll(".item-total").forEach(cell => {
+        total += parseFloat(cell.textContent);
+      });
+      document.getElementById("grand-total").textContent = total.toFixed(2) + " lei";
+    }
+
+    function applyVoucher() {
+      const code = document.getElementById("voucher").value.trim();
+      const msg = document.getElementById("voucher-msg");
+      const totalEl = document.getElementById("grand-total");
+
+      let total = parseFloat(totalEl.textContent);
+      if (code === "READMORE10") {
+        const discount = total * 0.1;
+        total -= discount;
+        totalEl.textContent = total.toFixed(2) + " lei";
+        msg.textContent = "Voucher aplicat: -10%";
+      } else if (code !== "") {
+        msg.textContent = "Cod invalid";
+      } else {
+        msg.textContent = "";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomandări Literare</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .topbar{
+        position:sticky;
+        top:0;
+        background:rgba(255,255,255,0.92);
+        backdrop-filter:blur(4px);
+        border-bottom:1px solid #eee;
+        z-index:40
+    }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #6a0dad;
+            margin-bottom: 20px;
+        }
+
+        /* Select gen */
+        .genre-select {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        select {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 2px solid #6a0dad;
+            outline: none;
+        }
+
+        /* Recomandări */
+        .recommendation {
+            background-color: #f7f0ff;
+            border-left: 5px solid #6a0dad;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .recommendation:hover {
+            transform: scale(1.02);
+        }
+
+        .genre-title {
+            font-weight: bold;
+            color: #6a0dad;
+            margin-bottom: 5px;
+        }
+
+        .genre-desc {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .book-list {
+            margin-left: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.PNG" alt="Logo Phornesis" />
+        <div>
+          <h1>phronesis</h1>
+        </div>
+      </div>
+
+      <nav class="nav-actions" aria-label="Meniul principal">
+        <button class="icon-btn" title="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 21s-7.5-4.735-10-8.06C-0.5 8.636 4 4 7.5 6.5 9 7.75 10 10 12 11c2-1 3-3.25 4.5-4.5C20 4 24.5 8.636 22 12.94 19.5 16.265 12 21 12 21z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="muted">Wishlist</span>
+        </button>
+
+        <button class="icon-btn" title="Coșul meu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M6 6h15l-1.5 9h-11L6 6z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="muted">Cos</span>
+          <span class="pill" style="margin-left:8px">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+    <div class="container">
+        <h2>Selectează genul preferat</h2>
+
+        <div class="genre-select">
+            <select id="genreSelect" onchange="showRecommendations()">
+                <option value="">-- Alege un gen --</option>
+                <option value="romance">Romance</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="mister">Mister / Thriller</option>
+                <option value="sf">Science Fiction</option>
+                <option value="istoric">Istoric</option>
+            </select>
+        </div>
+
+        <div id="recommendationsContainer"></div>
+    </div>
+
+    <script>
+        const genres = {
+            romance: {
+                description: "Cărțile romantice explorează iubirea și relațiile dintre personaje, emoții și conexiuni sufletești.",
+                books: ["Mândrie și Prejudecată - Jane Austen", "Jane Eyre - Charlotte Brontë", "La Medeleni - Ionel Teodoreanu"]
+            },
+            fantasy: {
+                description: "Genul fantasy aduce lumi imaginare, magie, creaturi fantastice și aventuri epice.",
+                books: ["Stăpânul Inelelor - J.R.R. Tolkien", "Harry Potter - J.K. Rowling", "Cronicile din Narnia - C.S. Lewis"]
+            },
+            mister: {
+                description: "Thriller-ul și misterul pun accent pe suspans, crime și investigații captivante.",
+                books: ["Codul lui Da Vinci - Dan Brown", "Fata dispărută - Gillian Flynn", "Detectivul Poirot - Agatha Christie"]
+            },
+            sf: {
+                description: "Science Fiction explorează știința, viitorul, tehnologia și lumi alternative.",
+                books: ["Dune - Frank Herbert", "Fundația - Isaac Asimov", "Războiul Lumilor - H.G. Wells"]
+            },
+            istoric: {
+                description: "Romanele istorice ne poartă în epoci trecute, inspirate din evenimente reale sau fictive.",
+                books: ["Ultima noapte de dragoste, întâia noapte de război - Camil Petrescu", "Pillars of the Earth - Ken Follett", "Maria - Ioana Pârvulescu"]
+            }
+        };
+
+        function showRecommendations() {
+            const select = document.getElementById('genreSelect');
+            const container = document.getElementById('recommendationsContainer');
+            container.innerHTML = '';
+
+            const genreKey = select.value;
+            if (!genreKey) return;
+
+            const genre = genres[genreKey];
+
+            const div = document.createElement('div');
+            div.classList.add('recommendation');
+
+            div.innerHTML = `
+                <div class="genre-title">${select.options[select.selectedIndex].text}</div>
+                <div class="genre-desc">${genre.description}</div>
+                <ul class="book-list">
+                    ${genre.books.map(book => `<li>${book}</li>`).join('')}
+                </ul>
+            `;
+
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>

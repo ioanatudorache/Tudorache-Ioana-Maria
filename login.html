@@ -1,194 +1,148 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phronesis — Login</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-
-    :root{
-      --purple-700: #6a1b9a;
-      --purple-500: #9c27b0;
-      --purple-300: #d1a3e0;
-      --muted: #6b6b6b;
-      --bg: #ffffff;
+    body {
+      font-family: 'Courier New', Courier, monospace, sans-serif;
+      background-color: white;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    body{
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: var(--bg);
-      color:#111;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:32px;
+    .login-box {
+      width: 350px;
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center; 
     }
 
-    .card{
-      width:100%;
-      max-width:420px;
-      border-radius:14px;
-      box-shadow:0 8px 30px rgba(15,15,15,0.08);
-      overflow:hidden;
-      background:linear-gradient(180deg, rgba(154, 49, 161, 0.04), rgba(156,39,176,0.02));
-      border:1px solid rgba(154,49,161,0.06);
+    .logo {
+      width: 300px; 
+      height: auto;
+      margin-bottom: 5px;
+      align-items: center;
     }
 
-    .hero{
-      padding:24px 28px;
-      background:linear-gradient(90deg, rgba(154,49,161,0.06), rgba(156,39,176,0.02));
-      display:flex;
-      align-items:center;
-      gap:14px;
+    h1 {
+      color: #800080;
+      margin-bottom: 20px;
+      font-size: 28px;
     }
 
-    .logo{
-      width:56px;height:56px;border-radius:10px;
-      background:linear-gradient(135deg,var(--purple-700),var(--purple-500));
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:22px;
-      box-shadow:0 6px 18px rgba(156,39,176,0.18);
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: left;
     }
 
-    .brand h1{font-size:20px;letter-spacing:-0.4px}
-    .brand p{font-size:13px;color:var(--muted);margin-top:4px}
-
-    form{padding:26px 28px;display:flex;flex-direction:column;gap:14px}
-
-    label{font-size:13px;color:#333;font-weight:600}
-    input[type="email"], input[type="password"]{
-      width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e6e6e6;font-size:15px;
-      background:white;outline:none;transition:box-shadow .12s, border-color .12s;
-    }
-    input:focus{box-shadow:0 6px 18px rgba(156,39,176,0.08);border-color:var(--purple-300)}
-
-    .field{
-      display:flex;flex-direction:column;gap:8px
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
     }
 
-    .pwd-row{position:relative}
-    .toggle-btn{
-      position:absolute;right:8px;top:50%;transform:translateY(-50%);
-      background:none;border:none;padding:6px 8px;border-radius:8px;cursor:pointer;font-weight:600;
-      color:var(--purple-700);font-size:13px
+    .password-container {
+      position: relative;
     }
 
-    .actions{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
-    .remember{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:14px}
-    .remember input{width:16px;height:16px}
-
-    .btn{
-      margin-top:6px;padding:12px;border-radius:10px;border:none;font-weight:700;font-size:15px;cursor:pointer;
-      background:linear-gradient(90deg,var(--purple-700),var(--purple-500));color:white;box-shadow:0 10px 30px rgba(156,39,176,0.15);
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #800080;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
     }
 
-    .secondary{background:transparent;border:1px solid rgba(15,15,15,0.06);color:var(--purple-700);font-weight:600;padding:10px;border-radius:10px}
+    button {
+      width: 100%;
+      margin-top: 40px;
+      padding: 10px;
+      background-color: #800080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-    .hint{font-size:13px;color:var(--muted);text-align:center;padding:14px 20px 22px}
+    button:hover {
+      background-color: #a64ca6;
+    }
 
-    .error{color:#b00020;font-size:13px;margin-top:6px}
+    .register {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
 
-    footer{padding:18px 28px;background:linear-gradient(180deg, rgba(156,39,176,0.01), rgba(156,39,176,0));text-align:center;font-size:13px;color:var(--muted)}
+    .register a {
+      color: #800080;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-    a{color:var(--purple-700);text-decoration:none}
-
-    @media (max-width:480px){.card{max-width:100%;border-radius:12px}}
+    .register a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <main class="card" role="main">
-    <header class="hero">
-      <div class="logo" aria-hidden="true">P</div>
-      <div class="brand">
-        <h1>Phronesis</h1>
-        <p>Magazin online de cărți — autentificare</p>
-      </div>
-    </header>
+  <div class="login-box">
+    <!-- 🔹 Aici e poza magazinului -->
+    <img src="logo.png" alt="Logo Phronesis" class="logo">
 
-    <form id="loginForm" novalidate>
-      <div class="field">
-        <label for="email">Adresa de email</label>
-        <input id="email" name="email" type="email" placeholder="ex: ioana@example.com" required autocomplete="email">
-        <div id="emailError" class="error" aria-live="polite" style="display:none"></div>
-      </div>
+    <!-- 🔹 Numele magazinului -->
+    <h1>phronesis</h1>
 
-      <div class="field pwd-row">
-        <label for="password">Parola</label>
-        <input id="password" name="password" type="password" placeholder="Introdu parola" required autocomplete="current-password" aria-describedby="pwdHelp">
-        <button type="button" class="toggle-btn" id="togglePwd" aria-pressed="false" aria-label="Afișează parola">Arată</button>
-        <div id="pwdHelp" class="hint" style="text-align:left;padding-left:0;padding-right:0">Parola este ascunsă. Apasă <strong>Arată</strong> pentru a o vedea.</div>
-        <div id="pwdError" class="error" aria-live="polite" style="display:none"></div>
+    <form>
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="ex: ioana@example.com" required>
+
+      <label for="password">Parolă:</label>
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Introdu parola" required>
+        <button type="button" class="toggle-password" onclick="togglePassword()">Arată</button>
       </div>
 
-      <div class="actions">
-        <label class="remember"><input type="checkbox" id="remember"> Ține-mă minte</label>
-        <a href="#" id="forgot">Am uitat parola</a>
-      </div>
-
-      <button class="btn" type="submit">Autentifică-te</button>
-
-      <button type="button" class="secondary" id="demo">Autentificare demo</button>
-
+      <button type="submit">Autentifică-te</button>
     </form>
 
-    <footer>
+    <div class="register">
       Nu ai cont? <a href="#">Înregistrează-te</a>
-    </footer>
-  </main>
+    </div>
+  </div>
 
   <script>
-    const toggle = document.getElementById('togglePwd');
-    const pwd = document.getElementById('password');
-    const form = document.getElementById('loginForm');
-    const email = document.getElementById('email');
-    const emailError = document.getElementById('emailError');
-    const pwdError = document.getElementById('pwdError');
-
-    toggle.addEventListener('click', () => {
-      const isHidden = pwd.type === 'password';
-      pwd.type = isHidden ? 'text' : 'password';
-      toggle.textContent = isHidden ? 'Ascunde' : 'Arată';
-      toggle.setAttribute('aria-pressed', String(isHidden));
-      toggle.setAttribute('aria-label', isHidden ? 'Ascunde parola' : 'Afișează parola');
-    });
-
-    function validateEmail(value){
-      return /^\S+@\S+\.\S+$/.test(value);
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggleButton = document.querySelector(".toggle-password");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleButton.textContent = "Ascunde";
+      } else {
+        passwordField.type = "password";
+        toggleButton.textContent = "Arată";
+      }
     }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
-      emailError.style.display = 'none'; pwdError.style.display = 'none';
-
-      if(!validateEmail(email.value)){
-        emailError.textContent = 'Te rugăm introdu o adresă de email validă.';
-        emailError.style.display = 'block';
-        valid = false;
-      }
-
-      if(pwd.value.length < 6){
-        pwdError.textContent = 'Parola trebuie să aibă cel puțin 6 caractere.';
-        pwdError.style.display = 'block';
-        valid = false;
-      }
-
-      if(!valid) return;
-
-      const payload = {email: email.value, password: pwd.value, remember: document.getElementById('remember').checked };
-
-      console.log('Trimitem payload (simulat):', payload);
-      alert('Autentificare reușită (simulare). Bine ai venit la Phronesis!');
-    });
-
-    document.getElementById('demo').addEventListener('click', () => {
-      email.value = 'demo@phrones.is';
-      pwd.value = 'demopass';
-      pwd.type = 'text'; toggle.textContent = 'Ascunde'; toggle.setAttribute('aria-pressed','true');
-    });
   </script>
 </body>
 </html>
+
+

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phronesis - Despre</title>
+  <meta name="description" content="Povestea librariei Phronesis - origine, misiune si pasiune pentru carti." />
+  <style>
+    :root{
+      --purple: #7c3aed; 
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --max-w: 980px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+        height:100%;
+        margin:0;
+        background:var(--bg);color:#111;
+        font-family:Inter,system-ui,-apple-system,"Times New Roman",Roboto,"Helvetica Neue",Arial}
+    a{
+        color:var(--purple);
+        text-decoration:none
+    }
+
+    .dark-mode {
+        background-color: black;
+        color: white;
+    }  
+    .topbar{
+        position:sticky;
+        top:0;
+        background:rgba(255,255,255,0.92);
+        backdrop-filter:blur(4px);
+        border-bottom:1px solid #eee;
+        z-index:40
+    }
+    .container{
+        max-width:var(--max-w);
+        margin:0 auto;
+        padding:18px
+    }
+    .nav{
+        display:flex;
+        align-items:center;
+        gap:16px
+    }
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:12px
+    }
+    .brand img{
+        width:46px;
+        height:46px;
+        object-fit:contain;
+        border-radius:8px;
+        border:1px solid #f0f0f0
+    }
+    .brand h1{
+        font-size:18px;
+        margin:0;
+        font-weight:600
+    }
+    .nav-actions{
+        margin-left:auto;
+        display:flex;
+        gap:12px;
+        align-items:center
+    }
+    .icon-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:8px 12px;
+        border-radius:10px;
+        border:1px solid transparent;
+        cursor:pointer
+    }
+    .icon-btn:hover{
+        background:#fafafa
+    }
+    .pill{
+        background:var(--purple);
+        color:white;
+        padding:6px 10px;
+        border-radius:999px;
+        font-size:13px
+    }
+
+    .hero{
+        padding:48px 0 28px
+    }
+    .hero-grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:20px;
+        align-items:center
+    }
+    .card{
+        background:#fff;
+        border-radius:12px;
+        padding:20px;
+        box-shadow:0 6px 18px rgba(16,24,40,0.04);
+        border:1px solid #f3f3f6
+    }
+    h2{
+        color:var(--purple);
+        margin:0 0 8px
+    }
+    p.lead{
+        margin:0;
+        color:var(--muted);
+        line-height:1.6
+    }
+
+    .story{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:18px;
+        padding-bottom:40px
+    }
+    .accent{
+        border-left:4px solid var(--purple);
+        padding-left:14px
+    }
+
+    .photo{
+        margin:40px o; 
+        text-align:center
+    }
+    .photo img{
+        max-width:100%;
+        border-radius:12px;
+        box-shadow:0 6px 18px rgba(16,24,40,0.08)
+    }
+    .photo p{
+        color:var(--uted);
+        font-size:14px;
+        margin-top:8px
+    }
+
+    @media(min-width:800px){
+      .hero-grid{grid-template-columns:1fr 360px}
+      .story{grid-template-columns:1fr 320px}
+    }
+
+    .muted{color:var(--muted)}
+    .btn{
+        display:inline-block;
+        padding:10px 14px;
+        border-radius:10px;
+        border:1px solid var(--purple);
+        color:var(--purple);
+        background:transparent;
+        font-weight:600
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.PNG" alt="Logo Phornesis" />
+        <div>
+          <h1>phronesis</h1>
+        </div>
+      </div>
+
+      <nav class="nav-actions" aria-label="Meniul principal">
+        <button class="icon-btn" title="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 21s-7.5-4.735-10-8.06C-0.5 8.636 4 4 7.5 6.5 9 7.75 10 10 12 11c2-1 3-3.25 4.5-4.5C20 4 24.5 8.636 22 12.94 19.5 16.265 12 21 12 21z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="muted">Wishlist</span>
+        </button>
+
+        <button class="icon-btn" title="Coșul meu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M6 6h15l-1.5 9h-11L6 6z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="muted">Cos</span>
+          <span class="pill" style="margin-left:8px">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <article class="card">
+          <h2>Despre Phronesis</h2>
+          <p class="lead">Phronesis s-a nascut dintr-o obsesie sanatoasa pentru povesti: cele care ne deschid ochii, cele care ne schimbă gândurile și cele care ne țin treji noaptea. Suntem o librărie independentă care îmbină selecția atentă cu bucuria descoperirii — pentru cititorii curioși, colecționari și visători.</p>
+        </article>
+
+        <aside class="card">
+          <h3 style="margin-top:0">Ce gasesti aici</h3>
+          <ul style="padding-left:18px;margin:8px 0 0">
+            <li>Fictiune contemporana & clasica</li>
+            <li>Eseuri si filosofie</li>
+            <li>Arhitectura, arta & ilustratie</li>
+            <li>Istorie si fitiunie istorica</li>
+            <li>Carti romance si young adult</li>
+            <li>Viniluri si CD-uri, fiindca iubim si muzica</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn" href="#colectie">Vezi colectia</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="photo">
+        <img src="librarie.JPG">
+    </section>
+
+    <section class="story">
+      <div class="accent">
+        <h3>De unde vine numele?</h3>
+        <p>Numele <strong>Phronesis</strong> e un joc între curiozitate și reflecție. Am pornit de la ideea greacă "phronesis" și am jucat puțin cu sunetul pentru a crea o identitate proprie: o librărie care nu oferă doar volume, ci instrumente pentru gândit. Phronesis inseamna intelepciune practica, abilitatea de  face decizii morale si bune in situatii complexe. E un tip de intelect si virtute morala care se invata si developeaza prin experienta.</p>
+        <p>Phronesis, in ciuda cunoasterii pur teoretice, este despre aplicarea cunostiintelor si intelegere pentru a face alegeri prudente si eficiente. Consideram ca phronesis este una dintre cele mai importante calitati pe care o poate dobandi un om.</p>
+      </div>
+
+      <div>
+        <h3>Povestea noastră</h3>
+        <p>Magazinul a început ca o colecție mică într-un apartament: prieteni care schimbau cărți, recomandări care se transformau în întâlniri lungi la ceai și, în cele din urmă, o dorință de a oferi comunității un loc pentru lectură atentă. După primul an, am deschis un spațiu fizic unde organizăm cluburi de carte, lansări și mici expoziții tematice.</p>
+        <p>Ne place să credem că fiecare carte are o „valoare” — un fel de amprentă care găsește cititorul potrivit. Misiunea noastră e să facilităm acea întâlnire.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

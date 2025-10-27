@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phronesis</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      color: #222;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid #eee;
+      z-index: 40;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    .muted {
+      color: #666;
+    }
+
+    .pill {
+      background: #007bff;
+      color: white;
+      border-radius: 12px;
+      padding: 2px 6px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      text-align: center;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      padding-bottom: 50px;
+    }
+
+    .book-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .book-card h3 {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .pagination button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .pagination button:hover {
+      background: #0056b3;
+    }
+
+    .pagination button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="Logo Phornesis" />
+        <div>
+          <h1>phronesis</h1>
+          <div class="muted" style="font-size:13px">Librarie online</div>
+        </div>
+      </div>
+
+      <nav class="nav-actions" aria-label="Meniul principal">
+        <button class="icon-btn" title="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 21s-7.5-4.735-10-8.06C-0.5 8.636 4 4 7.5 6.5 9 7.75 10 10 12 11c2-1 3-3.25 4.5-4.5C20 4 24.5 8.636 22 12.94 19.5 16.265 12 21 12 21z"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="muted">Wishlist</span>
+        </button>
+
+        <button class="icon-btn" title="Coșul meu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M6 6h15l-1.5 9h-11L6 6z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="muted">Cos</span>
+          <span class="pill" style="margin-left:8px">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Catalogul de carti</h2>
+    <div id="book-list" class="book-grid"></div>
+  </main>
+
+  <div class="pagination">
+      <button id="prevBtn">←</button>
+      <button id="nextBtn">→</button>
+    </div>
+  </main>
+
+  <script>
+  const books = [
+      { title: "Crimă și pedeapsă", image: "https://m.media-amazon.com/images/I/81rk-L1x1tL._AC_UF894,1000_QL80_.jpg" },
+      { title: "Micul prinț", image: "https://m.media-amazon.com/images/I/61YVQJ0k6VL._AC_UF894,1000_QL80_.jpg" },
+      { title: "1984", image: "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF894,1000_QL80_.jpg" },
+      { title: "Maestrul și Margareta", image: "https://m.media-amazon.com/images/I/81H4z4r5eIL._AC_UF894,1000_QL80_.jpg" },
+      { title: "Mândrie și prejudecată", image: "https://m.media-amazon.com/images/I/81q5V+F8ZqL._AC_UF894,1000_QL80_.jpg" },
+      { title: "Jane Eyre", image: "https://m.media-amazon.com/images/I/91hq6chD0PL._AC_UF894,1000_QL80_.jpg" },
+      { title: "Moromeții", image: "https://humanitas.ro/sites/default/files/styles/800xauto/public/coperta_morometii.jpg" },
+      { title: "Ion", image: "https://cdn.dc5.ro/img-prod/2360178-0.jpeg" },
+      { title: "Enigma Otiliei", image: "https://cdn.dc5.ro/img-prod/4595845-0.jpeg" },
+      { title: "Baltagul", image: "https://cdn.dc5.ro/img-prod/1600199-0.jpeg" }
+    ];
+
+    const booksPerPage = 4;
+    let currentPage = 1;
+
+    function renderBooks() {
+      const bookList = document.getElementById("book-list");
+      bookList.innerHTML = "";
+
+      const start = (currentPage - 1) * booksPerPage;
+      const end = start + booksPerPage;
+      const pageBooks = books.slice(start, end);
+
+      pageBooks.forEach(book => {
+        const card = document.createElement("div");
+        card.classList.add("book-card");
+        card.innerHTML = `
+          <img src="${book.image}" alt="${book.title}">
+          <h3>${book.title}</h3>
+        `;
+        bookList.appendChild(card);
+      });
+
+      document.getElementById("prevBtn").disabled = currentPage === 1;
+      document.getElementById("nextBtn").disabled = end >= books.length;
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderBooks();
+      }
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      if (currentPage * booksPerPage < books.length) {
+        currentPage++;
+        renderBooks();
+      }
+    });
+
+    renderBooks();
+  </script>
+
+</body>
+</html>
+
